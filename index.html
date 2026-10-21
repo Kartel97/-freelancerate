@@ -1,111 +1,263 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculateur TJM Freelance gratuit - Estimez votre tarif journalier</title>
-    <meta name="description" content="Calculez gratuitement votre TJM de freelance en 10 secondes : salaire visé, charges, jours facturés. Tarif journalier minimal conseillé, cotisations incluses.">
-    <meta property="og:title" content="Calculateur TJM Freelance gratuit ⚡">
-    <meta property="og:description" content="Combien facturer par jour ? Calculez votre tarif journalier en 10 secondes.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://kartel97.github.io/-freelancerate/">
-    <meta name="twitter:card" content="summary">
-    <script src="https://cdn.tailwindcss.com"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Calcul TJM auto-entrepreneur 2026 : calculateur gratuit | FreelanceRate</title>
+<meta name="description" content="Combien facturer ta journée de freelance ? Calcule ton TJM en 10 secondes, cotisations URSSAF 2026 comprises selon ton activité. Gratuit, sans inscription.">
+<link rel="canonical" href="https://kartel97.github.io/-freelancerate/">
+<link rel="icon" type="image/png" href="favicon.png">
+<meta property="og:title" content="Combien facturer ta journée de freelance ?">
+<meta property="og:description" content="Calcule ton TJM en 10 secondes, cotisations URSSAF 2026 comprises. Gratuit.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://kartel97.github.io/-freelancerate/">
+<meta property="og:image" content="https://kartel97.github.io/-freelancerate/img/partage.png">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://kartel97.github.io/-freelancerate/img/partage.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"FreelanceRate – Calculateur de TJM","url":"https://kartel97.github.io/-freelancerate/","applicationCategory":"FinanceApplication","operatingSystem":"Tous","inLanguage":"fr","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"}},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"C'est quoi le TJM ?","acceptedAnswer":{"@type":"Answer","text":"Le TJM (taux journalier moyen) est le prix que tu factures pour une journée de travail. Ce n'est pas ce qui arrive dans ta poche : il faut retirer les cotisations URSSAF, tes frais et l'impôt."}},
+{"@type":"Question","name":"Comment calculer son TJM en micro-entreprise ?","acceptedAnswer":{"@type":"Answer","text":"TJM = (revenu net visé + frais mensuels) ÷ (1 − taux de cotisations) ÷ jours facturés par mois. Les cotisations se calculent sur tout le chiffre d'affaires, frais compris."}},
+{"@type":"Question","name":"Combien de jours facturer par mois ?","acceptedAnswer":{"@type":"Answer","text":"Compte plutôt 15 jours que 20 : une partie de ton temps part en prospection, en administratif et en congés, et ces jours ne sont pas payés."}}
+]}]}
+</script>
+<style>
+:root{--bleu:#1F3A5F;--bleu2:#2c5282;--acc:#F0A030;--vert:#047857;--fond:#F6F7F9;--carte:#fff;--texte:#1d232b;--gris:#4B5563;--ligne:#e3e7ec;--erreur:#b42318;--clair:#eef3f9}
+@media (prefers-color-scheme:dark){:root{--bleu:#9cc3ff;--bleu2:#7fb0ff;--fond:#12151a;--carte:#1c2128;--texte:#e8ebef;--gris:#aab3bf;--ligne:#2c333d;--erreur:#ff8a80;--clair:#1f2a38}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--fond);color:var(--texte);font:17px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+a{color:var(--bleu2)}
+img{max-width:100%;height:auto;display:block}
+.wrap{max-width:720px;margin:0 auto;padding:0 16px}
+header{background:#1F3A5F;color:#fff}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:56px}
+.logo{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;font-weight:800}
+.logo img{width:32px;height:32px;border-radius:50%}
+header nav a{color:#fff;font-weight:600;text-decoration:none;font-size:.95em}
+.hero{background:linear-gradient(160deg,#1F3A5F,#2c5282);color:#fff;padding:32px 0 88px;text-align:center}
+.hero h1{font-size:clamp(1.7em,6vw,2.4em);line-height:1.15;margin:0 0 10px}
+.hero p{margin:0 auto;max-width:520px;opacity:.92}
+.hero .acc{color:var(--acc)}
+.calc{background:var(--carte);border:1px solid var(--ligne);border-radius:18px;padding:20px;margin-top:-64px;box-shadow:0 10px 30px rgba(0,0,0,.12)}
+.champ{margin-bottom:14px}
+.champ label{display:block;font-weight:700;margin-bottom:6px}
+.champ small{display:block;color:var(--gris);font-size:.85em;margin-top:4px}
+.champ input,.champ select{display:block;width:100%;padding:12px;border-radius:10px;border:1px solid var(--ligne);background:var(--fond);color:var(--texte);font-size:16px;min-height:48px}
+.champ input:focus,.champ select:focus{outline:3px solid var(--acc);outline-offset:1px}
+.champ.ko input{border-color:var(--erreur)}
+.msg{display:none;color:var(--erreur);font-size:.9em;font-weight:600;margin-top:4px}
+.champ.ko .msg{display:block}
+.btn{display:block;width:100%;text-align:center;background:var(--acc);color:#1d232b;font-weight:800;text-decoration:none;padding:14px 18px;border-radius:12px;border:0;cursor:pointer;font-size:1.05em;min-height:48px}
+.btn:hover{filter:brightness(1.06)}
+.btn.vert{background:var(--vert);color:#fff}
+.btn.sec{background:transparent;color:var(--bleu2);border:2px solid var(--bleu2);font-size:.95em}
+#resultat{display:none;margin-top:20px;padding-top:18px;border-top:1px solid var(--ligne)}
+#resultat.visible{display:block}
+.tjm{text-align:center;background:var(--clair);border-radius:14px;padding:16px}
+.tjm .etiq{margin:0;color:var(--gris);font-weight:600;font-size:.9em;text-transform:uppercase;letter-spacing:.04em}
+.tjm .valeur{margin:4px 0;font-size:2.4em;font-weight:900;color:var(--bleu);line-height:1.1}
+.tjm .detail{margin:0;color:var(--gris);font-size:.95em}
+.offre{margin-top:18px}
+.offre h2{font-size:1.15em;margin:0 0 6px;color:var(--texte)}
+.offre p{margin:0 0 12px;color:var(--gris);font-size:.95em}
+.barre{display:block;text-align:center;color:var(--gris);font-size:.9em;margin-bottom:6px}
+.rassure{text-align:center;color:var(--gris);font-size:.85em;margin:10px 0}
+section{padding:36px 0 8px}
+section h2{color:var(--bleu);font-size:1.5em;margin:0 0 6px}
+.sous{color:var(--gris);margin:0 0 18px}
+.grille{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.carte{background:var(--carte);border:1px solid var(--ligne);border-radius:16px;overflow:hidden;display:flex;flex-direction:column;position:relative}
+.carte .corps{padding:14px;display:flex;flex-direction:column;gap:6px;flex:1}
+.carte h3{margin:0;font-size:1.05em}
+.carte p{margin:0;color:var(--gris);font-size:.92em}
+.prix{font-size:1.3em;font-weight:800;color:var(--bleu)}
+.prix s{font-size:.65em;color:var(--gris);font-weight:600;margin-left:6px}
+.carte .btn{margin-top:auto;padding:11px}
+.vedette{grid-column:1/-1;border:2px solid var(--acc)}
+.vedette .corps{gap:8px}
+.badge{position:absolute;top:10px;left:10px;background:var(--acc);color:#1d232b;font-weight:800;font-size:.8em;padding:4px 10px;border-radius:20px}
+.contenu h3{color:var(--bleu);margin:22px 0 6px;font-size:1.15em}
+.contenu p,.contenu li{color:var(--texte)}
+.formule{background:var(--carte);border:1px solid var(--ligne);border-left:4px solid var(--acc);border-radius:10px;padding:12px 14px;font-weight:700}
+table{width:100%;border-collapse:collapse;background:var(--carte);border-radius:10px;overflow:hidden;font-size:.95em}
+th,td{text-align:left;padding:10px;border-bottom:1px solid var(--ligne)}
+th{background:var(--clair)}
+td:last-child,th:last-child{white-space:nowrap;text-align:right}
+footer{background:#1F3A5F;color:#fff;margin-top:40px;padding:24px 0;font-size:.92em}
+footer a{color:#fff}
+footer p{margin:6px 0}
+@media (max-width:420px){.grille{grid-template-columns:1fr}.vedette{grid-column:auto}}
+</style>
 </head>
-<body class="bg-gray-50 text-gray-800 font-sans p-6 min-h-screen flex flex-col items-center justify-center gap-6">
+<body>
+<header><div class="wrap">
+<a class="logo" href="https://kartel97.github.io/ae-facile/"><img src="favicon.png" alt="">L'Auto-Entrepreneur Facile</a>
+<nav><a href="#outils">Les outils</a></nav>
+</div></header>
 
-    <div class="max-w-md w-full bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
-        <h1 class="text-2xl font-bold text-center text-indigo-600 mb-2">FreelanceRate ⚡</h1>
-        <p class="text-sm text-gray-500 text-center mb-6">Calculez le tarif journalier (TJM) idéal pour atteindre vos objectifs financiers.</p>
+<div class="hero"><div class="wrap">
+<h1>Combien facturer ta <span class="acc">journée</span> de freelance ?</h1>
+<p>Calcule ton TJM en 10 secondes, cotisations URSSAF 2026 comprises. Gratuit, sans inscription.</p>
+</div></div>
 
-        <div class="space-y-4">
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Salaire mensuel net visé (€)</label>
-                <input type="number" id="salary" placeholder="ex: 2500" class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none">
-            </div>
+<main class="wrap">
+<form class="calc" id="calcul" novalidate>
+<div class="champ" id="c-salaire">
+<label for="salaire">Ce que tu veux toucher par mois (€)</label>
+<input type="number" id="salaire" inputmode="decimal" min="1" step="any" placeholder="ex : 2500">
+<small>Ton revenu net, avant impôt.</small>
+<span class="msg">Indique un montant supérieur à 0.</span>
+</div>
+<div class="champ" id="c-frais">
+<label for="frais">Tes frais pro par mois (€)</label>
+<input type="number" id="frais" inputmode="decimal" min="0" step="any" placeholder="ex : 300">
+<small>Logiciels, téléphone, matériel, assurance… Laisse vide si aucun.</small>
+<span class="msg">Les frais ne peuvent pas être négatifs.</span>
+</div>
+<div class="champ" id="c-jours">
+<label for="jours">Jours facturés par mois</label>
+<input type="number" id="jours" inputmode="decimal" min="1" max="31" step="any" value="15">
+<small>15 est une bonne moyenne (prospection, administratif et congés ne sont pas payés).</small>
+<span class="msg">Indique un nombre de jours entre 1 et 31.</span>
+</div>
+<div class="champ">
+<label for="activite">Ton activité</label>
+<select id="activite">
+<option value="0.256">Prestation libérale (BNC) – 25,6 %</option>
+<option value="0.232">Profession libérale CIPAV – 23,2 %</option>
+<option value="0.212">Prestation de services artisanale ou commerciale (BIC) – 21,2 %</option>
+<option value="0.123">Vente de marchandises – 12,3 %</option>
+</select>
+<small>Taux de cotisations URSSAF 2026, hors ACRE.</small>
+</div>
+<button type="submit" class="btn">Calculer mon TJM</button>
 
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Frais pro / charges mensuelles (€)</label>
-                <input type="number" id="expenses" placeholder="ex: 300" class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none">
-            </div>
+<div id="resultat" aria-live="polite">
+<div class="tjm">
+<p class="etiq">Ton tarif minimum</p>
+<p class="valeur"><span id="v-tjm">0</span> € / jour</p>
+<p class="detail">Pour toucher <b id="v-net">0 €</b> par mois, tu dois encaisser <b id="v-ca">0 €</b>, dont <b id="v-cotis">0 €</b> de cotisations URSSAF.</p>
+<p class="detail" style="margin-top:6px;font-size:.85em">Hors impôt sur le revenu, CFE et contribution à la formation pro (0,1 à 0,3 %).</p>
+</div>
+<div class="offre">
+<h2>Maintenant, il faut vraiment encaisser ces <span id="v-ca2">0 €</span> chaque mois.</h2>
+<p>Le Pack Complet suit ton chiffre d'affaires, calcule tes cotisations, fait tes factures et t'alerte avant les plafonds.</p>
+<span class="barre"><s>27,70 €</s> · tu économises 7,80 €</span>
+<a class="btn vert" href="https://kartel97.gumroad.com/l/moonu" target="_blank" rel="noopener">Je prends le Pack – 19,90 €</a>
+<p class="rassure">Paiement sécurisé par Gumroad · Téléchargement immédiat · Fichier défectueux remplacé ou remboursé</p>
+<a class="btn sec" href="https://kartel97.gumroad.com/l/obrjij" target="_blank" rel="noopener">Ou seulement le Kit – 9,90 €</a>
+</div>
+</div>
+</form>
 
-            <div>
-                <label class="block text-sm font-medium text-gray-700">Jours facturés par mois (Moyenne : 15)</label>
-                <input type="number" id="days" placeholder="ex: 15" class="w-full mt-1 p-3 border rounded-xl focus:ring-2 focus:ring-indigo-500 outline-none">
-            </div>
+<section id="outils">
+<h2>Les outils de l'auto-entrepreneur</h2>
+<p class="sous">Fichiers prêts à remplir sur Excel, Word, ou gratuitement avec Google Sheets et Docs. Tu les reçois juste après le paiement.</p>
+<div class="grille">
+<div class="carte vedette"><span class="badge">Tu économises 7,80 €</span>
+<img src="img/pack.jpg" alt="Pack Complet Auto-Entrepreneur 2026" width="800" height="600" loading="lazy">
+<div class="corps"><h3>Pack Complet 2026</h3>
+<p><b>Kit</b> : factures, devis et cotisations calculées. <b>Tableau de bord</b> : ce qu'il te reste vraiment, mois par mois, avec alertes plafonds et TVA. <b>21 modèles</b> : relances d'impayés, devis, CGV.</p>
+<div class="prix">19,90 € <s>27,70 €</s></div>
+<a class="btn vert" href="https://kartel97.gumroad.com/l/moonu" target="_blank" rel="noopener">Je prends le Pack</a></div></div>
+<div class="carte"><img src="img/kit.jpg" alt="Kit Auto-Entrepreneur 2026" width="800" height="600" loading="lazy">
+<div class="corps"><h3>Kit Auto-Entrepreneur 2026</h3><p>Cotisations URSSAF automatiques, factures, devis, livre des recettes.</p>
+<div class="prix">9,90 €</div>
+<a class="btn sec" href="https://kartel97.gumroad.com/l/obrjij" target="_blank" rel="noopener">Voir</a></div></div>
+<div class="carte"><img src="img/tableau.jpg" alt="Tableau de bord Auto-Entrepreneur 2026" width="800" height="600" loading="lazy">
+<div class="corps"><h3>Tableau de bord 2026</h3><p>Ton revenu réel, ton objectif, les alertes plafonds et TVA.</p>
+<div class="prix">9,90 €</div>
+<a class="btn sec" href="https://kartel97.gumroad.com/l/eqirx" target="_blank" rel="noopener">Voir</a></div></div>
+<div class="carte"><img src="img/modeles.jpg" alt="Pack Modèles Clients" width="800" height="600" loading="lazy">
+<div class="corps"><h3>Pack Modèles Clients</h3><p>21 mails et courriers : devis, relances d'impayés, mise en demeure, CGV.</p>
+<div class="prix">7,90 €</div>
+<a class="btn sec" href="https://kartel97.gumroad.com/l/grido" target="_blank" rel="noopener">Voir</a></div></div>
+</div>
+</section>
 
-            <button onclick="calculateTJM()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-3 rounded-xl transition">
-                Calculer mon TJM recommandé
-            </button>
-        </div>
+<section class="contenu" id="guide">
+<h2>Guide : bien calculer ton TJM</h2>
+<p class="sous">Ce qu'il faut savoir avant de fixer ton prix.</p>
 
-        <div id="result" class="hidden mt-6 p-4 bg-indigo-50 border border-indigo-100 rounded-xl text-center">
-            <p class="text-xs uppercase tracking-wide text-gray-500">Votre tarif minimal conseillé :</p>
-            <p class="text-3xl font-extrabold text-indigo-600 my-1"><span id="tjmValue">0</span> € / jour</p>
-            <p class="text-xs text-gray-400 mb-4">(Inclut ~25% de cotisations Urssaf)</p>
+<h3>C'est quoi le TJM ?</h3>
+<p>Le TJM (taux journalier moyen) est le prix que tu factures pour une journée de travail. Ce n'est <b>pas</b> ce qui arrive dans ta poche : il faut d'abord retirer les cotisations URSSAF, tes frais et l'impôt. Beaucoup de freelances qui débutent fixent leur prix à partir du salaire qu'ils veulent, et se retrouvent avec 25 % de moins à la fin du mois.</p>
 
-            <!-- SECTION MONÉTISATION AUTOMATISÉE -->
-            <div class="mt-4 pt-4 border-t border-indigo-200">
-                <p class="text-sm font-semibold text-gray-700 mb-1">Prêt à facturer ? Gérez tout en 10 min par mois.</p>
-                <p class="text-xs text-gray-500 mb-3">Fichier Excel : cotisations URSSAF calculées automatiquement, factures et devis prêts à l'emploi, livre des recettes + alertes de plafond.</p>
-                <!-- Lien produit Gumroad : Pack Complet (Kit + Tableau de bord + Modèles) -->
-                <a href="https://kartel97.gumroad.com/l/moonu" target="_blank" class="inline-block w-full bg-emerald-500 hover:bg-emerald-600 text-white text-sm font-bold py-2.5 px-4 rounded-lg shadow transition">
-                    Obtenir le Pack Complet (19,90 € au lieu de 27,70 €)
-                </a>
-                <p class="text-xs text-gray-500 mt-2">Kit + Tableau de bord + 21 modèles clients et CGV.
-                    <!-- Lien produit Gumroad : Kit Auto-Entrepreneur 2026 -->
-                    <a href="https://kartel97.gumroad.com/l/obrjij" target="_blank" class="text-indigo-600 underline">Ou le Kit seul (9,90 €)</a>
-                </p>
-            </div>
-        </div>
-    </div>
+<h3>La formule</h3>
+<p class="formule">TJM = (revenu visé + frais) ÷ (1 − taux de cotisations) ÷ jours facturés</p>
+<p>En micro-entreprise, les cotisations se calculent sur <b>tout</b> ce que tu encaisses, frais compris. C'est pour ça qu'on divise par (1 − taux) au lieu d'ajouter un pourcentage au salaire.</p>
+<p><b>Exemple</b> : tu veux 2 500 € par mois, tu as 300 € de frais et tu es en libéral (25,6 %). Il te faut 2 800 ÷ 0,744 = 3 763 € de chiffre d'affaires. Sur 15 jours, ça fait <b>251 € par jour</b>.</p>
 
-    <!-- BOUTIQUE : produits Gumroad -->
-    <div class="max-w-md w-full">
-        <h2 class="text-sm font-semibold uppercase tracking-wide text-gray-500 text-center mb-3">Les outils de l'auto-entrepreneur</h2>
-        <div class="grid grid-cols-2 gap-3">
-            <a href="https://kartel97.gumroad.com/l/obrjij" target="_blank" class="block bg-white rounded-xl border border-gray-100 shadow p-4 hover:border-indigo-300 transition">
-                <p class="text-sm font-bold text-gray-800">Kit Auto-Entrepreneur 2026</p>
-                <p class="text-xs text-gray-500 mt-1">URSSAF automatique, factures, devis, livre des recettes.</p>
-                <p class="text-sm font-bold text-indigo-600 mt-2">9,90 €</p>
-            </a>
-            <a href="https://kartel97.gumroad.com/l/eqirx" target="_blank" class="block bg-white rounded-xl border border-gray-100 shadow p-4 hover:border-indigo-300 transition">
-                <p class="text-sm font-bold text-gray-800">Tableau de bord 2026</p>
-                <p class="text-xs text-gray-500 mt-1">Revenu réel, objectif, alertes plafonds et TVA.</p>
-                <p class="text-sm font-bold text-indigo-600 mt-2">9,90 €</p>
-            </a>
-            <a href="https://kartel97.gumroad.com/l/grido" target="_blank" class="block bg-white rounded-xl border border-gray-100 shadow p-4 hover:border-indigo-300 transition">
-                <p class="text-sm font-bold text-gray-800">Pack Modèles Clients</p>
-                <p class="text-xs text-gray-500 mt-1">21 mails : devis, relances d'impayés, mise en demeure + CGV.</p>
-                <p class="text-sm font-bold text-indigo-600 mt-2">7,90 €</p>
-            </a>
-            <a href="https://kartel97.gumroad.com/l/moonu" target="_blank" class="block bg-emerald-50 rounded-xl border border-emerald-200 shadow p-4 hover:border-emerald-400 transition">
-                <p class="text-sm font-bold text-gray-800">Pack Complet</p>
-                <p class="text-xs text-gray-500 mt-1">Les 3 produits ensemble, -28 %.</p>
-                <p class="text-sm font-bold text-emerald-600 mt-2">19,90 €</p>
-            </a>
-        </div>
-    </div>
+<h3>Les taux de cotisations 2026</h3>
+<table>
+<tr><th>Ton activité</th><th>Taux</th></tr>
+<tr><td>Prestation libérale (BNC)</td><td>25,6 %</td></tr>
+<tr><td>Profession libérale CIPAV</td><td>23,2 %</td></tr>
+<tr><td>Services artisanaux ou commerciaux (BIC)</td><td>21,2 %</td></tr>
+<tr><td>Vente de marchandises</td><td>12,3 %</td></tr>
+</table>
+<p>Tous les détails sont dans l'article <a href="https://kartel97.github.io/ae-facile/articles/taux-cotisations-auto-entrepreneur-2026.html">sur les taux de cotisations</a> de L'Auto-Entrepreneur Facile.</p>
 
-    <script>
-        function calculateTJM() {
-            const salary = parseFloat(document.getElementById('salary').value) || 0;
-            const expenses = parseFloat(document.getElementById('expenses').value) || 0;
-            const days = parseFloat(document.getElementById('days').value) || 15;
+<h3>Pourquoi compter 15 jours et pas 20 ?</h3>
+<p>Un mois compte environ 20 jours ouvrés, mais tu ne factures pas tous ces jours. Une partie de ton temps part en prospection, devis, comptabilité, formation et congés. Ces jours ne sont pas payés. Compter 15 jours évite de te retrouver à court les mois creux.</p>
 
-            if(salary <= 0 || days <= 0) {
-                alert("Veuillez remplir correctement les champs.");
-                return;
-            }
+<h3>Ce que le calcul ne compte pas</h3>
+<ul>
+<li><b>L'impôt sur le revenu</b> : il dépend de ton foyer. Avec le versement libératoire, ajoute environ 1 à 2,2 % du chiffre d'affaires.</li>
+<li><b>La CFE</b> : un impôt local payé chaque fin d'année, à partir de la deuxième année (<a href="https://kartel97.github.io/ae-facile/articles/cfe-auto-entrepreneur.html">tout savoir sur la CFE</a>).</li>
+<li><b>Les congés et la retraite</b> : personne ne te les paie, à toi de les prévoir dans ton tarif.</li>
+</ul>
+<p>Pour suivre tout ça chaque mois sans y penser, le <a href="#outils">Pack Complet</a> fait les calculs à ta place.</p>
+</section>
+</main>
 
-            // Calcul : (Salaire brut estimé + charges) / jours
-            const grossSalary = salary * 1.30; 
-            const totalMonthly = grossSalary + expenses;
-            const tjm = Math.round(totalMonthly / days);
+<footer><div class="wrap">
+<p><b>Un outil gratuit de <a href="https://kartel97.github.io/ae-facile/">L'Auto-Entrepreneur Facile</a></b></p>
+<p>Paiement sécurisé par Gumroad · Fichiers livrés par e-mail</p>
+<p><a href="https://kartel97.github.io/ae-facile/mentions-legales.html">Mentions légales</a> · <a href="https://kartel97.github.io/ae-facile/cgv.html">CGV</a> · <a href="https://kartel97.github.io/ae-facile/confidentialite.html">Confidentialité</a></p>
+<p style="opacity:.8;font-size:.9em">Résultat indicatif, ne remplace pas l'avis d'un expert-comptable.</p>
+</div></footer>
 
-            document.getElementById('tjmValue').innerText = tjm;
-            document.getElementById('result').classList.remove('hidden');
-        }
-    </script>
+<script>
+const form = document.getElementById('calcul');
+const euros = n => Math.round(n).toLocaleString('fr-FR') + ' €';
+
+function verifier(id, ok) {
+    document.getElementById('c-' + id).classList.toggle('ko', !ok);
+    return ok;
+}
+
+form.addEventListener('submit', e => {
+    e.preventDefault();
+    const salaire = parseFloat(document.getElementById('salaire').value);
+    const fraisBrut = document.getElementById('frais').value;
+    const frais = fraisBrut === '' ? 0 : parseFloat(fraisBrut);
+    const jours = parseFloat(document.getElementById('jours').value);
+    const taux = parseFloat(document.getElementById('activite').value);
+
+    const ok = [
+        verifier('salaire', salaire > 0),
+        verifier('frais', frais >= 0),
+        verifier('jours', jours >= 1 && jours <= 31)
+    ].every(Boolean);
+    if (!ok) return;
+
+    // Les cotisations s'appliquent à tout le chiffre d'affaires, frais compris
+    const ca = (salaire + frais) / (1 - taux);
+    const tjm = Math.ceil(ca / jours);
+
+    document.getElementById('v-tjm').textContent = tjm.toLocaleString('fr-FR');
+    document.getElementById('v-net').textContent = euros(salaire);
+    document.getElementById('v-ca').textContent = euros(ca);
+    document.getElementById('v-ca2').textContent = euros(ca);
+    document.getElementById('v-cotis').textContent = euros(ca * taux);
+    const res = document.getElementById('resultat');
+    res.classList.add('visible');
+    res.scrollIntoView({behavior: 'smooth', block: 'start'});
+});
+</script>
 </body>
 </html>
